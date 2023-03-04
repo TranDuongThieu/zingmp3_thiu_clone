@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { HomePlaylist } from "../../../components";
 import SearchSong from "../../../components/Search/SearchAllSong";
-import { AddFriendsIcon, UnFindLogo } from "../../../ultis/icons";
+import { AddFriendsIcon } from "../../../ultis/icons";
 import unfind from '../../../assets/unfind.svg'
 const SearchAll = () => {
     const { searchData } = useSelector((state) => state.searchReSults);

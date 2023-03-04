@@ -2,13 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-    play,
-    setCurrentSong,
-    setPlaylist,
     setPlaylistId,
 } from "../../store/actions";
 import { HeartIcon, MoreIcon, PlayIcon, SpinerIcon } from "../../ultis/icons";
-import * as apis from "../../api";
 const HomePlaylist = ({ title = "", list, search }) => {
     const navigate = useNavigate();
     const [loaded, setLoaded] = useState(true);

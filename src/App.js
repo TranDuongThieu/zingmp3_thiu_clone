@@ -1,10 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import {
     Home,
-    Login,
     Public,
     Album,
-    ZingChartPage,
     Top100,
 } from "./containers/public";
 import * as apis from "./api";
@@ -15,7 +13,6 @@ import { useEffect, useState } from "react";
 import { WeekRank } from "./containers/public";
 import NewReleasePage from "./containers/public/NewReleasePage";
 import { Search, SearchAll } from "./containers/public/Search";
-import actionTypes from "./store/actions/actionTypes";
 import { getHome } from "./store/actions";
 import { Loading } from "./ultis/icons";
 function App() {
@@ -37,6 +34,7 @@ function App() {
             setLoaded(true);
         };
         fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         window.addEventListener("resize", setWidth);
@@ -46,9 +44,11 @@ function App() {
     });
     useEffect(() => {
         dispatch(actions.setCurrentWidth(currentWidth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentWidth]);
     useEffect(() => {
         dispatch(actions.getHome());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

@@ -3,17 +3,14 @@ import { getTop100 } from "../../api";
 import {
     HeartIcon,
     Loading,
-    LoadingPage,
     MoreIcon,
     PlayIcon,
     SpinerIcon,
 } from "../../ultis/icons";
 
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setPlaylistId } from "../../store/actions";
 const Top100 = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [top100, setTop100] = useState();
     const [loaded, setLoaded] = useState(true);

@@ -1,9 +1,7 @@
-import axios from "../../axios";
+
 import React, { useEffect, useState } from "react";
 import { getNewRelease } from "../../api";
-import { Loading, LoadingPage, PlayIconFill } from "../../ultis/icons";
-import SearchSong from "../../components/Search/SearchAllSong";
-import Playlist from "../../components/SongInPlaylist";
+import { Loading,  PlayIconFill } from "../../ultis/icons";
 import { SongInPlaylist } from "../../components";
 import { useDispatch } from "react-redux";
 import { play, setCurrentSong, setPlaylist } from "../../store/actions";

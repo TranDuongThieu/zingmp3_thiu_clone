@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { CloseIcon, SearchIcon } from "../../ultis/icons";
 import path from "../../ultis/path";
-import { apiSearch } from "../../api";
 import { useRef } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { search, searchID } from "../../store/actions";
+import {  searchID } from "../../store/actions";
 const SearchInput = () => {
     const inputRef = useRef();
     const [keyword, setKeyWord] = useState("");

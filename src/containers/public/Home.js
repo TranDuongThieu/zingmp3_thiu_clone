@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import {
     Zingchart,
     HomePlaylist,
@@ -8,7 +7,6 @@ import {
     Slider,
 } from "../../components";
 const Home = () => {
-    const currentWidth = useSelector((state)=> state.app.width);
     const homeDataSelector = useSelector((state) => state.app.homedata);
     console.log(homeDataSelector);
     const playlist = homeDataSelector?.filter(
