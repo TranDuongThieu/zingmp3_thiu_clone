@@ -1,0 +1,13 @@
+.scrollbar-settings::-webkit-scrollbar {
+  width: 4px;
+  height: 30px;
+  visibility: hidden;
+}
+.scrollbar-settings::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.scrollbar-settings :hover::-webkit-scrollbar {
+  visibility: visible;
+}/*# sourceMappingURL=scrollbar-settings.css.map */
