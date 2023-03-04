@@ -22,7 +22,7 @@ const NewReleasePage = () => {
 
     const dispatch = useDispatch();
     return (
-        <div >
+        <div>
             {isLoaded ? (
                 <div className=" w-full px-[59px] mb-[200px] ">
                     <div className="flex items-center gap-[5px]  text-[40px] text-[#0e8080] font-bold mb-[25px]">
@@ -58,8 +58,8 @@ const NewReleasePage = () => {
                     </div>
                 </div>
             ) : (
-                <div className=" mx-[59px] mt-[40px]">
-                    <Loading/>
+                <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ">
+                    <Loading />
                 </div>
             )}
         </div>

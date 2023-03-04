@@ -10,6 +10,7 @@ import {
 const Home = () => {
     const currentWidth = useSelector((state)=> state.app.width);
     const homeDataSelector = useSelector((state) => state.app.homedata);
+    console.log(homeDataSelector);
     const playlist = homeDataSelector?.filter(
         (item) => item.sectionType === "playlist"
     );

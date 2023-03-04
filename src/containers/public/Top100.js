@@ -44,7 +44,11 @@ const Top100 = () => {
                             </div>
                             <div
                                 className={`grid justify-between gap-5 ${
-                                    col === 4 ? "grid-cols-4" :  col === 5 ? "grid-cols-5" : "grid-cols-3"
+                                    col === 4
+                                        ? "grid-cols-4"
+                                        : col === 5
+                                        ? "grid-cols-5"
+                                        : "grid-cols-3"
                                 }`}
                             >
                                 {item?.items.map((song) => (
@@ -108,8 +112,8 @@ const Top100 = () => {
                     ))}
                 </div>
             ) : (
-                <div className="mt-[40px] mx-[59px]">
-                   <Loading/>
+                <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+                    <Loading />
                 </div>
             )}
         </div>
