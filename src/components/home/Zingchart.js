@@ -129,7 +129,7 @@ const Zingchart = () => {
                             >
                                 #zingchart
                             </Link>
-                            <PlayIconFill className="cursor-pointer" />
+                            <PlayIconFill className="cursor-pointer hover:text-[#0f7070]" />
                         </div>
                         <div
                             className={`flex text-white text m-[20px] gap-4   ${
