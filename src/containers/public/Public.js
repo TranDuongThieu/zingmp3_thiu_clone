@@ -8,7 +8,6 @@ const Public = () => {
     const currentWidth = useSelector((state) => state.app.width);
     const [showSidebar, setShowSidebar] = useState(false);
     const  currentSongInfo  = useSelector((state) => state.storagesong.currentSongInfo);
-    console.log(currentSongInfo);
     return (
         <div className="w-full  h-screen flex flex-col item-center justify-center  bg-main-300 overflow-hidden">
             <div className="relative w-full  h-full flex   ">
