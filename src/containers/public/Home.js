@@ -8,7 +8,6 @@ import {
 } from "../../components";
 const Home = () => {
     const homeDataSelector = useSelector((state) => state.app.homedata);
-    console.log(homeDataSelector);
     const playlist = homeDataSelector?.filter(
         (item) => item.sectionType === "playlist"
     );

@@ -97,7 +97,6 @@ const Album = () => {
             return h + " giờ " + min + " phút";
         }
     };
-    // console.log(playlistData);
     return (
         <div className="w-full flex justify-center pt-8">
             {isLoaded ? (
