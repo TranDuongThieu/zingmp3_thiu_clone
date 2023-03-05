@@ -1,7 +1,12 @@
 import moment from "moment";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { play, setCurrentSong, setPlaylist, setPlaylistId } from "../../store/actions";
+import {
+    play,
+    setCurrentSong,
+    setPlaylist,
+    setPlaylistId,
+} from "../../store/actions";
 import {
     AudioGif,
     HeartIcon,
@@ -13,6 +18,7 @@ import {
 const SearchSong = ({ song, pid, playlistTitle, playlist }) => {
     const { isPlaying } = useSelector((state) => state.isPlaying);
     const { currentSongId } = useSelector((state) => state.storagesong);
+    const load = useSelector((state) => state.load.loaded);
     const dispatch = useDispatch();
     const FormatDuration = (num) => {
         if (num < 3600) {
@@ -75,15 +81,19 @@ const SearchSong = ({ song, pid, playlistTitle, playlist }) => {
                         ) : (
                             <PlayIcon
                                 onClick={() => {
-                                    dispatch(setCurrentSong(song?.encodeId));
-                                    dispatch(play(true));
-                                    dispatch(setPlaylistId(pid));
-                                    dispatch(
-                                        setPlaylist({
-                                            title: playlistTitle,
-                                            songs: playlist,
-                                        })
-                                    );
+                                    if (load) {
+                                        dispatch(
+                                            setCurrentSong(song?.encodeId)
+                                        );
+                                        dispatch(play(true));
+                                        dispatch(setPlaylistId(pid));
+                                        dispatch(
+                                            setPlaylist({
+                                                title: playlistTitle,
+                                                songs: playlist,
+                                            })
+                                        );
+                                    }
                                 }}
                                 size={32}
                                 className="text-white  border-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"

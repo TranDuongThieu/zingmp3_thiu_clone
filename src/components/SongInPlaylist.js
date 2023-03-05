@@ -25,6 +25,7 @@ const Playlist = ({
     const dispatch = useDispatch();
     const { isPlaying } = useSelector((state) => state.isPlaying);
     const { currentSongId } = useSelector((state) => state.storagesong);
+    const load = useSelector((state) => state.load.loaded);
     const FormatDuration = (num) => {
         if (num < 3600) {
             let min = Math.floor(num / 60);
@@ -99,17 +100,19 @@ const Playlist = ({
                             {!isPlaying ? (
                                 <PlayIcon
                                     onClick={() => {
-                                        dispatch(
-                                            setCurrentSong(song?.encodeId)
-                                        );
-                                        dispatch(play(true));
-                                        dispatch(setPlaylistId(pid));
-                                        dispatch(
-                                            setPlaylist({
-                                                title: playlistTitle,
-                                                songs: playlist,
-                                            })
-                                        );
+                                        if (load) {
+                                            dispatch(
+                                                setCurrentSong(song?.encodeId)
+                                            );
+                                            dispatch(play(true));
+                                            dispatch(setPlaylistId(pid));
+                                            dispatch(
+                                                setPlaylist({
+                                                    title: playlistTitle,
+                                                    songs: playlist,
+                                                })
+                                            );
+                                        }
                                     }}
                                     size={32}
                                     className="text-white  border-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
@@ -121,17 +124,19 @@ const Playlist = ({
                             ) : (
                                 <PlayIcon
                                     onClick={() => {
-                                        dispatch(
-                                            setCurrentSong(song?.encodeId)
-                                        );
-                                        dispatch(play(true));
-                                        dispatch(setPlaylistId(pid));
-                                        dispatch(
-                                            setPlaylist({
-                                                title: playlistTitle,
-                                                songs: playlist,
-                                            })
-                                        );
+                                        if (load) {
+                                            dispatch(
+                                                setCurrentSong(song?.encodeId)
+                                            );
+                                            dispatch(play(true));
+                                            dispatch(setPlaylistId(pid));
+                                            dispatch(
+                                                setPlaylist({
+                                                    title: playlistTitle,
+                                                    songs: playlist,
+                                                })
+                                            );
+                                        }
                                     }}
                                     size={32}
                                     className="text-white  border-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"

@@ -9,6 +9,7 @@ import volumeReducer from "./volumeReducer";
 import isRepeatReducer from "./isRepeatReducer";
 import ListenHistoryReducer from "./listenHistoryReducer";
 import searchReducer from "./searchReducer";
+import { loadReducer } from "./load";
 const commonCofig = {
     storage: storage,
     stateReconciler: autoMergeLevel2,
@@ -42,5 +43,6 @@ const rootReducer = combineReducers({
     storagesong: persistReducer(musicConfig, musicReducer),
     storageRepeat: persistReducer(isRepeatStorage, isRepeatReducer),
     listenHistory: persistReducer(listenHistoryStorage, ListenHistoryReducer),
+    load: loadReducer, 
 });
 export default rootReducer;

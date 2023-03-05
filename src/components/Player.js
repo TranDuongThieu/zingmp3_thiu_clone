@@ -28,6 +28,7 @@ import {
 import { setCurrentSong } from "../store/actions";
 import { muteVolume, setCurrentVolume } from "../store/actions/volume";
 import LeftPlayer from "./LeftPlayer";
+import { setLoaded } from "../store/actions/load";
 var intervalId;
 const Player = ({ setShowSidebar }) => {
     const [songInfo, setSongInfo] = useState();
@@ -53,6 +54,7 @@ const Player = ({ setShowSidebar }) => {
         (state) => state.storagevolume.volumeBeforeMute
     );
     const isRepeat = useSelector((state) => state.storageRepeat.isRepeat);
+    let oldAudio;
     const formatTime = (time) => {
         if (time && !isNaN(time)) {
             const mins = Math.floor(time / 60);
@@ -68,8 +70,10 @@ const Player = ({ setShowSidebar }) => {
         return toast.warn(msg);
     }
     useEffect(() => {
+        oldAudio = audio;
         const fetchData = async () => {
             setIsLoaded(false);
+            dispatch(setLoaded(false));
             const [res, res2] = await Promise.all([
                 apis.apigetDetailSong(songId),
                 apis.apiGetSong(songId),
@@ -95,14 +99,17 @@ const Player = ({ setShowSidebar }) => {
                 setErr(res2.data.msg);
             }
             setIsLoaded(true);
+            dispatch(setLoaded(true));
         };
         fetchData();
     }, [songId]);
     useEffect(() => {
-        intervalId && clearInterval(intervalId);
-        audio.pause();
-        audio.load();
-        audio.currentTime = 0;
+        if (oldAudio !== audio) {
+            intervalId && clearInterval(intervalId);
+            audio.pause();
+            audio.load();
+            audio.currentTime = 0;
+        }
         if (isPlaying) {
             audio.play();
             intervalId = setInterval(() => {
@@ -115,7 +122,7 @@ const Player = ({ setShowSidebar }) => {
                 thumbRef.current.style.cssText = `right: ${100 - percent}%`;
             }, 500);
         }
-    }, [audio]);
+    }, [audio, isPlaying]);
 
     useEffect(() => {
         if (isPlaying && !isError) {
@@ -230,7 +237,7 @@ const Player = ({ setShowSidebar }) => {
                 dispatch(play(true));
             } else {
                 dispatch(play(false));
-                setCurrentTime(0)
+                setCurrentTime(0);
             }
         }
     };

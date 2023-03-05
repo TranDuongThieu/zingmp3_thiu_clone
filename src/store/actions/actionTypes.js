@@ -14,5 +14,6 @@ const actionTypes = {
     SEARCH_SONGS_ARTIST:"SEARCH_SONGS_ARTIST",
     SET_CURRENT_WIDTH: "SET_CURRENT_WIDTH",
     SET_SEARCH_ID: "SET_SEARCH_ID",
+    SET_LOADED:"SET_LOADED"
 };
 export default actionTypes;

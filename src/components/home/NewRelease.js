@@ -8,7 +8,8 @@ const NewRelease = () => {
     const newReleaseSelector = useSelector(
         (state) => state.app.new_releases[0]
     );
-    const {width} = useSelector(state=>state.app)
+    const { width } = useSelector((state) => state.app);
+    const load = useSelector((state) => state.load.loaded);
     const titles = [
         { id: "all", title: "TẤT CẢ" },
         { id: "vpop", title: "VIỆT NAM" },
@@ -57,7 +58,15 @@ const NewRelease = () => {
                     </div>
                 </div>
             </div>
-            <div className={`grid  text-[14px] ${width >1225 ? "grid-cols-3" : width > 800 ?"grid-cols-2" :" grid-cols-1"}`}>
+            <div
+                className={`grid  text-[14px] ${
+                    width > 1225
+                        ? "grid-cols-3"
+                        : width > 800
+                        ? "grid-cols-2"
+                        : " grid-cols-1"
+                }`}
+            >
                 {newReleaseArray?.slice(0, 12).map((item) => (
                     <div
                         key={item.encodeId}
@@ -75,27 +84,27 @@ const NewRelease = () => {
                                         size={32}
                                         className="text-white  border-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
                                         onClick={() => {
-                                            dispatch(
-                                                setCurrentSong(item.encodeId)
-                                            );
-                                            dispatch(
-                                                setPlaylist({
-                                                    title: "Mới phát hành",
-                                                    songs: newReleaseArray,
-                                                })
-                                            );
-                                            dispatch(play(true));
+                                            if (load) {
+                                                dispatch(
+                                                    setCurrentSong(
+                                                        item.encodeId
+                                                    )
+                                                );
+                                                dispatch(
+                                                    setPlaylist({
+                                                        title: "Mới phát hành",
+                                                        songs: newReleaseArray,
+                                                    })
+                                                );
+                                                dispatch(play(true));
+                                            }
                                         }}
                                     />
                                 </div>
                             </div>
                             <div className=" h-[60px] truncate flex flex-col justify-center">
-                                <div>
-                                    {item.title}
-                                </div>
-                                <div>
-                                    {item.artistsNames}
-                                </div>
+                                <div>{item.title}</div>
+                                <div>{item.artistsNames}</div>
                                 <div>
                                     {" "}
                                     {moment(item.releaseDate * 1000).fromNow()}

@@ -14,7 +14,7 @@ const SongInChart = ({
     const dispatch = useDispatch();
     const { isPlaying } = useSelector((state) => state.isPlaying);
     const { currentSongId } = useSelector((state) => state.storagesong);
-   
+    const load = useSelector((state) => state.load.loaded);
     return (
         <div
             className={`cursor-pointer group flex items-center w-full px-[15px] py-[10px]  rounded-md hover:bg-[hsla(0,0%,100%,.2)] ${
@@ -50,8 +50,10 @@ const SongInChart = ({
                     {!isPlaying ? (
                         <PlayIcon
                             onClick={() => {
-                                dispatch(setCurrentSong(encodeId));
-                                dispatch(play(true));
+                                if (load) {
+                                    dispatch(setCurrentSong(encodeId));
+                                    dispatch(play(true));
+                                }
                             }}
                             size={32}
                             className="text-white  border-white absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
