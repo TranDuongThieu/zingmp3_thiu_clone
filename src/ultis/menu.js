@@ -23,25 +23,20 @@ export const bottomSidebarMenu = [
         text:"Top 100",
         icon:<StarIcon/>
     },
-    {
-        path:'/mv',
-        text:"MV",
-        icon:<MusicVideoIcon/>
-    },
 ]
 export const libraryMenu = [
     {
-        path:'/baihat',
+        path:'mymusic/song',
         text:"Bài Hát",
         icon:<SongIcon/>
     },
     {
-        path:'/playlist',
+        path:'mymusic/playlist',
         text:"Playlist",
         icon:<PlaylistIcon/>
     },
     {
-        path:'/ganday',
+        path:'mymusic/recent',
         text:"Gần Đây",
         icon:<ClockIcon/>
     },

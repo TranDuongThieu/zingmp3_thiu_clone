@@ -1,7 +1,7 @@
 import actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    volume: 0.5,
+    volume: 50,
     volumeBeforeMute: 0,
 };
 export default function volumeReducer(state = initialState, action) {

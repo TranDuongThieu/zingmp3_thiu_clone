@@ -15,6 +15,10 @@ import NewReleasePage from "./containers/public/NewReleasePage";
 import { Search, SearchAll } from "./containers/public/Search";
 import { getHome } from "./store/actions";
 import { Loading } from "./ultis/icons";
+import Library from "./containers/public/Library/Library";
+import SongLibrary from "./containers/public/Library/SongLibrary";
+import PlaylistLibrary from "./containers/public/Library/PlaylistLibrary";
+import Recent from "./containers/public/Library/Recent";
 function App() {
     const dispatch = useDispatch();
     const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
@@ -59,6 +63,11 @@ function App() {
                         <Route path={path.HOME} element={<Home />} />
                         <Route path={path.ALBUM} element={<Album />} />
                         <Route path={path.PLAYLIST} element={<Album />} />
+                        <Route path={path.MY_MUSIC} element={<Library/>}>
+                            <Route path={path.SONG_LIBRARY} element={<SongLibrary/>}/>
+                            <Route path={path.PLAYLIST_LIBRARY} element={<PlaylistLibrary/>}/>
+                            <Route path={path.RECENT_LIBRARY} element={<Recent/>}/>
+                        </Route>
                         <Route
                             path={path.WEEK_RANK_TITLE_PID}
                             element={<WeekRank />}

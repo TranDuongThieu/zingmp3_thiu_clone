@@ -12,8 +12,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
     HighVolumeIcon,
-    MicroIcon,
-    MusicVideoIcon,
     MuteVolumeIcon,
     NextIcon,
     PauseIcon,
@@ -23,7 +21,6 @@ import {
     RepeatIcon,
     ShuffleIcon,
     SpinerIcon,
-    WindowIcon,
 } from "../ultis/icons";
 import { setCurrentSong } from "../store/actions";
 import { muteVolume, setCurrentVolume } from "../store/actions/volume";

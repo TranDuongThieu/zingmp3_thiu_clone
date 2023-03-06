@@ -81,7 +81,7 @@ const LeftSidebar = () => {
                             </div>
                         </div>
                     )}
-                    <div className="pt-5">
+                    {/* <div className="pt-5">
                         {currentWidth > 1131 && (
                             <h3 className="px-[25px] pb-3 ">THƯ VIỆN</h3>
                         )}
@@ -106,14 +106,14 @@ const LeftSidebar = () => {
                                 </div>
                             </NavLink>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
-                {currentWidth > 1131 && (
+                {/* {currentWidth > 1131 && (
                     <div className="flex  items-center gap-[10px] px-[25px] h-[54px] cursor-pointer hover:text-[#0f7070] border-t-[1px] border-[#ccc] ">
                         <PlusIcon size={18} />
                         <span>Tạo playlist mới</span>
                     </div>
-                )}
+                )} */}
             </Scrollbars>
         </div>
     );
