@@ -7,6 +7,7 @@ const actionTypes = {
     PUSH_LISTEN_HISTORY : "PUSH_LISTEN_HISTORY",
     PLAY: "PLAY",
     REPEAT:"REPEAT",
+    SHUFFLE:"SHUFFLE",
     LOAD:"LOAD",
     SET_VOLUME:"SET_VOLUME",
     MUTE_VOLUME: "MUTE_VOLUME",
@@ -14,6 +15,7 @@ const actionTypes = {
     SEARCH_SONGS_ARTIST:"SEARCH_SONGS_ARTIST",
     SET_CURRENT_WIDTH: "SET_CURRENT_WIDTH",
     SET_SEARCH_ID: "SET_SEARCH_ID",
-    SET_LOADED:"SET_LOADED"
+    SET_LOADED:"SET_LOADED",
+
 };
 export default actionTypes;

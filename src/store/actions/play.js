@@ -7,3 +7,7 @@ export const repeat = (flag) => ({
     type: actionTypes.REPEAT,
     flag,
 });
+export const shuffle = (flag) => ({
+    type: actionTypes.SHUFFLE,
+    flag,
+});

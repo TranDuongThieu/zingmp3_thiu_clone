@@ -6,6 +6,7 @@ import {
     pushListenHistory,
     repeat,
     setCurrentSongInfo,
+    shuffle,
 } from "../store/actions";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -34,6 +35,7 @@ const Player = ({ setShowSidebar }) => {
     const [isFirst, setIsFirst] = useState(false);
     const [isLast, setIsLast] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [firstAccess, setFirstAccess] = useState(true);
     const [err, setErr] = useState();
     const thumbRef = useRef();
     const trackRef = useRef();
@@ -51,7 +53,7 @@ const Player = ({ setShowSidebar }) => {
         (state) => state.storagevolume.volumeBeforeMute
     );
     const isRepeat = useSelector((state) => state.storageRepeat.isRepeat);
-    let oldAudio;
+    const isShuffle = useSelector((state) => state.storageRepeat.isShuffle);
     const formatTime = (time) => {
         if (time && !isNaN(time)) {
             const mins = Math.floor(time / 60);
@@ -67,7 +69,6 @@ const Player = ({ setShowSidebar }) => {
         return toast.warn(msg);
     }
     useEffect(() => {
-        oldAudio = audio;
         const fetchData = async () => {
             setIsLoaded(false);
             dispatch(setLoaded(false));
@@ -100,17 +101,15 @@ const Player = ({ setShowSidebar }) => {
         };
         fetchData();
     }, [songId]);
+
     useEffect(() => {
-        if (oldAudio !== audio) {
-            intervalId && clearInterval(intervalId);
-            audio.pause();
-            audio.load();
-            audio.currentTime = 0;
-        }
+        intervalId && clearInterval(intervalId);
+        audio.pause();
+        audio.load();
+        audio.currentTime = currentTime;
         if (isPlaying) {
             audio.play();
             intervalId = setInterval(() => {
-                // setVolume(audio?.volume);
                 setCurrentTime(audio?.currentTime);
                 let percent =
                     Math.round(
@@ -120,7 +119,17 @@ const Player = ({ setShowSidebar }) => {
             }, 500);
         }
     }, [audio, isPlaying]);
-
+    const handleTogglePlay = () => {
+        if (!isError) {
+            if (isPlaying) {
+                audio.pause();
+                dispatch(play(false));
+            } else {
+                audio.play();
+                dispatch(play(true));
+            }
+        } else Toast(err);
+    };
     useEffect(() => {
         if (isPlaying && !isError) {
             if (isLoaded) audio.play();
@@ -134,17 +143,7 @@ const Player = ({ setShowSidebar }) => {
     useEffect(() => {
         audio.volume = volumeSelector / 100;
     }, [volumeSelector]);
-    const handleTogglePlay = () => {
-        if (!isError) {
-            if (isPlaying) {
-                audio.pause();
-                dispatch(play(false));
-            } else {
-                audio.play();
-                dispatch(play(true));
-            }
-        } else Toast(err);
-    };
+
     useEffect(() => {
         if (currentTime === audio.duration) {
             if (isRepeat) {
@@ -203,38 +202,54 @@ const Player = ({ setShowSidebar }) => {
 
     const handlePrevSong = () => {
         if (isLoaded) {
-            if (playlist && !isFirst) {
-                let currentSongIndex;
-                for (let i = 0; i < playlist.length; i++) {
-                    if (playlist[i].encodeId === songId) {
-                        currentSongIndex = i;
-                        break;
+            if (!isShuffle) {
+                if (playlist && !isFirst) {
+                    let currentSongIndex;
+                    for (let i = 0; i < playlist.length; i++) {
+                        if (playlist[i].encodeId === songId) {
+                            currentSongIndex = i;
+                            break;
+                        }
                     }
+                    dispatch(
+                        setCurrentSong(playlist[currentSongIndex - 1].encodeId)
+                    );
+                    dispatch(play(true));
                 }
-                dispatch(
-                    setCurrentSong(playlist[currentSongIndex - 1].encodeId)
+            } else {
+                let currentSongIndex = Math.floor(
+                    Math.random() * playlist.length
                 );
+                dispatch(setCurrentSong(playlist[currentSongIndex].encodeId));
                 dispatch(play(true));
             }
         }
     };
     const handleNextSong = () => {
         if (isLoaded) {
-            let currentSongIndex;
-            if (playlist && !isLast) {
-                for (let i = 0; i < playlist.length; i++) {
-                    if (playlist[i].encodeId === songId) {
-                        currentSongIndex = i;
-                        break;
+            if (!isShuffle) {
+                if (playlist && !isLast) {
+                    let currentSongIndex;
+                    for (let i = 0; i < playlist.length; i++) {
+                        if (playlist[i].encodeId === songId) {
+                            currentSongIndex = i;
+                            break;
+                        }
                     }
+                    dispatch(
+                        setCurrentSong(playlist[currentSongIndex + 1].encodeId)
+                    );
+                    dispatch(play(true));
+                } else {
+                    dispatch(play(false));
+                    setCurrentTime(0);
                 }
-                dispatch(
-                    setCurrentSong(playlist[currentSongIndex + 1].encodeId)
-                );
-                dispatch(play(true));
             } else {
-                dispatch(play(false));
-                setCurrentTime(0);
+                let currentSongIndex = Math.floor(
+                    Math.random() * playlist.length
+                );
+                dispatch(setCurrentSong(playlist[currentSongIndex].encodeId));
+                dispatch(play(true));
             }
         }
     };
@@ -247,9 +262,18 @@ const Player = ({ setShowSidebar }) => {
                         <div className="w-[30px] h-[30px] px-[3px] py-[3px] cursor-pointer">
                             <ShuffleIcon
                                 className={`w-full h-full ${
+                                    isShuffle
+                                        ? "text-[#0f7070]"
+                                        : "text-[#32323d]"
+                                } ${
                                     !playlist &&
                                     "text-[rgba(20,20,20,0.4)] cursor-not-allowed"
                                 }`}
+                                onClick={() =>
+                                    isShuffle
+                                        ? dispatch(shuffle(false))
+                                        : dispatch(shuffle(true))
+                                }
                                 size={16}
                             />
                         </div>
