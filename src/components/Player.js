@@ -259,7 +259,7 @@ const Player = ({ setShowSidebar }) => {
             <LeftPlayer songInfo={songInfo} isLoaded={isLoaded} />
             <div className=" w-[40%] flex-auto mx-[10px]">
                 <div className="flex justify-center items-center flex-col gap-1">
-                    <div className=" gap-[16px] flex justify-center items-center">
+                    <div className={` flex justify-center items-center ${width < 500 ? "gap-2" : "gap-4"}`}>
                         <div className="w-[30px] h-[30px] px-[3px] py-[3px] cursor-pointer">
                             <ShuffleIcon
                                 className={`w-full h-full ${

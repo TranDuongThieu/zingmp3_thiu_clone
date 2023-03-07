@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import { getNewRelease } from "../../api";
 import { Loading,  PlayIconFill } from "../../ultis/icons";
 import { SongInPlaylist } from "../../components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { play, setCurrentSong, setPlaylist } from "../../store/actions";
 const NewReleasePage = () => {
     const [pageData, setPageData] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
+    const {width} = useSelector(state=> state.app)
     useEffect(() => {
         const fetchData = async () => {
             setIsLoaded(false);
@@ -22,7 +23,7 @@ const NewReleasePage = () => {
     return (
         <div>
             {isLoaded ? (
-                <div className=" w-full px-[59px] mb-[200px] ">
+                <div className={` w-full  mb-[200px] ${width > 700 ? "px-[59px]" : "px-3"}`}>
                     <div className="flex items-center gap-[5px]  text-[40px] text-[#0e8080] font-bold mb-[25px]">
                         Nhạc Mới
                         <PlayIconFill

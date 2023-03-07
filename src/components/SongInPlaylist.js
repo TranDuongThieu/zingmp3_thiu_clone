@@ -26,6 +26,7 @@ const Playlist = ({
     const { isPlaying } = useSelector((state) => state.isPlaying);
     const { currentSongId } = useSelector((state) => state.storagesong);
     const load = useSelector((state) => state.load.loaded);
+    const { width } = useSelector((state) => state.app);
     const FormatDuration = (num) => {
         if (num < 3600) {
             let min = Math.floor(num / 60);
@@ -53,7 +54,7 @@ const Playlist = ({
                 song.encodeId === currentSongId && "bg-[hsla(0,0%,100%,0.3)]"
             }`}
         >
-            {newReleasePage && (
+            {newReleasePage && width > 700 && (
                 <div className="min-w-[60px] flex items-center justify-between cursor-default">
                     <div
                         className={`text-[32px] font-sans font-bold justify-center ${
@@ -82,8 +83,8 @@ const Playlist = ({
                     </div>
                 </div>
             )}
-            <div className="w-[50%] flex gap-2">
-                <div className="relative">
+            <div className={` flex gap-2 ${width > 700 ? "w-[50%]" :"w-full"}`}>
+                <div className="relative w-[40px] h-[40px] rounded-md flex-none">
                     <img
                         src={song?.thumbnail}
                         alt=""
@@ -154,9 +155,11 @@ const Playlist = ({
                     </div>
                 </div>
             </div>
-            <div className="flex-1 max-w-[400px] text-[12px] truncate text-[rgba(50,50,61,0.5)]">
-                {format(song?.album?.title)}
-            </div>
+            {width > 700 && (
+                <div className="flex-1 max-w-[400px] text-[12px] truncate text-[rgba(50,50,61,0.5)]">
+                    {format(song?.album?.title)}
+                </div>
+            )}
             <div className="absolute right-2 text-[12px] cursor-default text-[rgba(50,50,61,0.5)]">
                 {FormatDuration(song?.duration)}
             </div>

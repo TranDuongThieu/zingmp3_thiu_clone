@@ -13,6 +13,8 @@ const SearchAll = () => {
             ? Math.round(num / 100) * 10 + "k"
             : num;
     };
+    const {width} = useSelector(state=> state.app);
+    let length = width > 700 ? 4 : width >500 ? 3 :2
     return (
         <div>
             {searchData?.counter?.artist === 0 && searchData?.counter?.artist ===0 && searchData?.counter?.song ===0   ? (
@@ -35,7 +37,7 @@ const SearchAll = () => {
                         <div className="font-bold mb-5 text-[20px]">
                             Bài Hát
                         </div>
-                        <div className="w-full gap-8 grid grid-cols-2">
+                        <div className={`w-full gap-8 grid  ${ width > 700 ? "grid-cols-2" : "grid-cols-1"}`}>
                             <div className="flex flex-col">
                                 {searchData?.songs
                                     ?.filter(
@@ -72,7 +74,7 @@ const SearchAll = () => {
                             </div>
                             <div className="w-full flex gap-2">
                                 {searchData?.artists
-                                    ?.slice(0, 4)
+                                    ?.slice(0, length)
                                     .map((artist) => (
                                         <div
                                             key={artist.encodeId}

@@ -8,21 +8,21 @@ import { bottomSidebarMenu, sidebarMenu } from "../ultis/menu";
 const Header = () => {
     const currentWidth = useSelector((state) => state.app.width);
     const active =
-        "py-2 flex items-center text-[#0f7070] px-[10px] bg-main-100 hover:text-[#0f7070] ";
+        "py-2 flex border h-full items-center text-[#0f7070] px-[10px] bg-main-100 hover:text-[#0f7070] ";
     const notActive =
-        "py-2 flex items-center text-[#32323d] px-[10px] hover:text-[#0f7070]";
+        "py-2 flex border h-full items-center text-[#32323d] px-[10px] hover:text-[#0f7070]";
     return (
         <div className="w-full h-full flex justify-between items-center max-w-[1442px] grid-cols-2 gap-3">
             {currentWidth < 700 && (
-                <div className="flex  rounded-md">
-                    <div className="w-full flex items-center py-[15px] h-[70px] ">
+                <div className="flex h-full ">
+                    <div className="w-full flex items-center my-[15px] h-[40px] ">
                         <NavLink
                             to=""
-                            className="w-[90px] h-full cursor-pointer flex items-center pr-[10px]"
+                            className="w-[100px] h-full cursor-pointer flex items-center px-[5px] "
                         >
                             <img src={logo} alt="logo" />
                         </NavLink>
-                      
+
                         {bottomSidebarMenu.map((item) => (
                             <NavLink
                                 key={item.path}
@@ -32,15 +32,13 @@ const Header = () => {
                                     isActive ? active : notActive
                                 }
                             >
-                                <div>
-                                    <div className="gap-[10px] flex">
-                                        {item.icon}
-                                        {currentWidth > 1131 && (
-                                            <span className=" font-bold ">
-                                                {item.text}
-                                            </span>
-                                        )}
-                                    </div>
+                                <div className="gap-[10px] flex ">
+                                    {item.icon}
+                                    {currentWidth > 1131 && (
+                                        <span className=" font-bold ">
+                                            {item.text}
+                                        </span>
+                                    )}
                                 </div>
                             </NavLink>
                         ))}

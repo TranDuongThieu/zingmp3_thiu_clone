@@ -12,6 +12,7 @@ const Search = () => {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const keyword = useSelector((state) => state.searchReSults.searchId);
+    const {width} = useSelector(state=> state.app);
     useEffect(() => {
         const fetchData = async () => {
             setLoaded(false);
@@ -32,11 +33,13 @@ const Search = () => {
 
     }, [keyword]);
     return (
-        <div className="max-w-[1442px] mb-[200px] px-[59px]">
-            <div className="text-[24px] font-bold pr-5 border-b-[1px] border-b-[rgba(0,0,0,0.1)]  mb-[20px]">
-                Kết Quả Tìm Kiếm
+        <div className="w-full flex justify-center">
+            <div className={`max-w-[1442px] mb-[200px]  ${width > 700 ? "px-[59px]" : "px-3"}`}>
+                <div className="text-[24px] font-bold pr-5 border-b-[1px] border-b-[rgba(0,0,0,0.1)]  mb-[20px]">
+                    Kết Quả Tìm Kiếm
+                </div>
+                {loaded ? <SearchAll /> : <Loading />}
             </div>
-            {loaded ? <SearchAll /> : <Loading />}
         </div>
     );
 };

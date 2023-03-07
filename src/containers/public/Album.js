@@ -34,7 +34,7 @@ const Album = () => {
     const dispatch = useDispatch();
     const { isPlaying } = useSelector((state) => state.isPlaying);
     const [isLoaded, setIsLoaded] = useState(false);
-    const {width} = useSelector((state) => state.app)
+    const { width } = useSelector((state) => state.app);
     const AudioGif = () => (
         <Audio
             height="30"
@@ -48,16 +48,16 @@ const Album = () => {
     );
     useEffect(() => {
         function handleBeforeUnload(e) {
-          e.preventDefault();
-          dispatch(play(false));
+            e.preventDefault();
+            dispatch(play(false));
         }
-    
-        window.addEventListener('beforeunload', handleBeforeUnload);
-    
+
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
         return () => {
-          window.removeEventListener('beforeunload', handleBeforeUnload);
+            window.removeEventListener("beforeunload", handleBeforeUnload);
         };
-      }, []);
+    }, []);
     useEffect(() => {
         const fetchPlaylistData = async () => {
             setIsLoaded(false);
@@ -77,10 +77,12 @@ const Album = () => {
             dispatch(
                 setCurrentSong(playlistData?.song?.items[randomSong]?.encodeId)
             );
-            dispatch(setPlaylist({
-                title:playlistData?.title,
-                songs: playlistData?.song?.items
-            }))
+            dispatch(
+                setPlaylist({
+                    title: playlistData?.title,
+                    songs: playlistData?.song?.items,
+                })
+            );
             dispatch(play(true));
             // const newState = { ...location.state, playAlbum: false };
             // navigate(location.pathname, { state: newState });
@@ -101,15 +103,37 @@ const Album = () => {
     return (
         <div className="w-full flex justify-center pt-8">
             {isLoaded ? (
-                <div className="justify-center w-full h-full max-w-[1442px] flex flex-col pt-5 px-[59px] mb-[200px] ">
-                    <div className={` mb-[30px] ${width > 1200 ? "flex h-[550px] gap-8":"flex-col gap-8"}`}>
-                        <div className={`${width > 1200 ? "flex flex-col flex-none  gap-1 h-full max-w-[300px]": "flex flex-none  gap-5 h-full items-center mb-8"}`}>
-                            <div className="relative w-[300px]">
+                <div
+                    className={`justify-center w-full h-full max-w-[1442px] flex flex-col pt-5  mb-[200px] ${
+                        width > 700 ? "px-[59px]" : "px-3"
+                    }`}
+                >
+                    <div
+                        className={` mb-[30px] ${
+                            width > 1200
+                                ? "flex h-[550px] gap-8"
+                                : "flex-col gap-8"
+                        }`}
+                    >
+                        <div
+                            className={`${
+                                width > 1200
+                                    ? "flex flex-col flex-none  gap-1 h-full max-w-[300px]"
+                                    : "flex flex-none  gap-5 h-full items-center mb-8"
+                            }`}
+                        >
+                            <div className="relative ">
                                 <div
-                                    className={`relative h-[300px] w-[300px] text-center overflow-hidden shadow-black rounded-[8px]  group ${
+                                    className={`relative text-center overflow-hidden shadow-black rounded-[8px]  group ${
                                         isPlaying
                                             ? "rounded-full animate-rotate-center "
                                             : "rounded-[8px] animate-rotate-center-pause"
+                                    } ${
+                                        width > 700
+                                            ? " h-[300px] w-[300px]"
+                                            : width > 400
+                                            ? "h-[200px] w-[200px]"
+                                            : "h-[150px] w-[150px]"
                                     }`}
                                 >
                                     <img
@@ -139,10 +163,13 @@ const Album = () => {
                                                     dispatch(
                                                         setPlaylistId(pid)
                                                     );
-                                                    dispatch(setPlaylist({
-                                                        title: playlistData?.title,
-                                                        songs : playlistData?.song?.items
-                                                    }))
+                                                    dispatch(
+                                                        setPlaylist({
+                                                            title: playlistData?.title,
+                                                            songs: playlistData
+                                                                ?.song?.items,
+                                                        })
+                                                    );
                                                     dispatch(play(true));
                                                 } else dispatch(play(true));
                                             }}
@@ -164,8 +191,14 @@ const Album = () => {
                             </div>
                             <div>
                                 {playlistData && (
-                                    <div className={`text-[13px] text-[#696969] font-sans flex flex-col ${width > 1200 ? "items-center" : "items-start"}`}>
-                                        <h3 className="text-[20px] font-bold text-black text-center">
+                                    <div
+                                        className={`text-[13px] text-[#696969] font-sans flex flex-col ${
+                                            width > 1200
+                                                ? "items-center"
+                                                : "items-start"
+                                        }`}
+                                    >
+                                        <h3 className="text-[20px] font-bold text-black text-start">
                                             {playlistData.title}
                                         </h3>
                                         <div className="flex gap-1">
@@ -178,7 +211,9 @@ const Album = () => {
                                                     .format("DD/MM/YYYY")}
                                             </span>
                                         </div>
-                                        <div className="text-center">{playlistData.artistsNames}</div>
+                                        <div className="text-start">
+                                            {playlistData.artistsNames}
+                                        </div>
                                         <div className="flex gap-1">
                                             <span>{playlistData.like}</span>{" "}
                                             <span>người yêu thích</span>
@@ -192,7 +227,9 @@ const Album = () => {
                                                     className="flex gap-[5px] justify-center items-center"
                                                 >
                                                     <PauseIcon className="w-[20px] h-[20px]" />
-                                                    <span>TẠM DỪNG</span>
+                                                    {width > 400 && (
+                                                        <span>TẠM DỪNG</span>
+                                                    )}
                                                 </div>
                                             ) : playlistIdStorage !== pid ? (
                                                 <div
@@ -209,15 +246,21 @@ const Album = () => {
                                                             setPlaylistId(pid)
                                                         );
                                                         dispatch(play(true));
-                                                        dispatch(setPlaylist({
-                                                            title: playlistData?.title,
-                                                            songs : playlistData?.song?.items
-                                                        }))
+                                                        dispatch(
+                                                            setPlaylist({
+                                                                title: playlistData?.title,
+                                                                songs: playlistData
+                                                                    ?.song
+                                                                    ?.items,
+                                                            })
+                                                        );
                                                     }}
                                                     className="flex gap-[5px] justify-center items-center"
                                                 >
                                                     <PlayIcon className="w-[20px] h-[20px]" />
-                                                    <span>PHÁT TẤT CẢ</span>
+                                                    {width > 400 && (
+                                                        <span>PHÁT TẤT CẢ</span>
+                                                    )}
                                                 </div>
                                             ) : (
                                                 <div
@@ -227,25 +270,31 @@ const Album = () => {
                                                     className="flex gap-[5px] justify-center items-center"
                                                 >
                                                     <PlayIcon className="w-[20px] h-[20px]" />
-                                                    <span>TIẾP TỤC PHÁT</span>
+                                                    {width > 400 && (
+                                                        <span>
+                                                            TIẾP TỤC PHÁT
+                                                        </span>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>
-                                        <div className="flex gap-[10px]">
-                                            <div className="p-[7px] bg-main-200 rounded-[999px] text-black">
-                                                {" "}
-                                                <HeartIcon size={20} />
+                                        {width > 700 && (
+                                            <div className="flex gap-[10px]">
+                                                <div className="p-[7px] bg-main-200 rounded-[999px] text-black">
+                                                    {" "}
+                                                    <HeartIcon size={20} />
+                                                </div>
+                                                <div className="p-[7px] bg-main-200 rounded-[999px] text-black">
+                                                    <MoreIcon size={20} />{" "}
+                                                </div>
                                             </div>
-                                            <div className="p-[7px] bg-main-200 rounded-[999px] text-black">
-                                                <MoreIcon size={20} />{" "}
-                                            </div>
-                                        </div>
+                                        )}
                                     </div>
                                 )}
                             </div>
                         </div>
                         {playlistData && (
-                            <div className="text-[14px] font-sans flex flex-col gap-[10px] h-full w-full scrollbar-settings-album overflow-auto ">
+                            <div className="text-[14px] font-sans flex flex-col gap-[5px] h-full w-full scrollbar-settings-album overflow-auto ">
                                 <div>
                                     <span className="text-[#696969] mr-1">
                                         Lời tựa
@@ -268,14 +317,16 @@ const Album = () => {
                                     </span>
                                 </div>
                                 <div className="flex flex-col w-full mb-[10px] text-[13px] ">
-                                    <div className="flex text-[#696969] p-[10px]  border-b-[1px] border-b-[rgba(0,0,0,0.05)]">
+                                    <div className="flex text-[#696969] p-[10px] justify-between border-b-[1px] border-b-[rgba(0,0,0,0.05)]">
                                         <div className="flex gap-4 items-center  w-[50%]">
                                             <ArrangeIcon className="w-4 h-4 p-[2px] border-[rgba(50,50,61,0.5)] border-[1px] rounded-[3px]" />
                                             <span>BÀI HÁT</span>
                                         </div>
-                                        <div className="flex-1 mx-10">
-                                            ALBUM
-                                        </div>
+                                        {width > 700 && (
+                                            <div className="flex-1 mx-10">
+                                                ALBUM
+                                            </div>
+                                        )}
                                         <div>THỜI GIAN</div>
                                     </div>
                                     <div className="">
@@ -284,8 +335,12 @@ const Album = () => {
                                                 key={item.encodeId}
                                                 song={item}
                                                 pid={pid}
-                                                playlistTitle={playlistData.title}
-                                                playlist = {playlistData?.song?.items}
+                                                playlistTitle={
+                                                    playlistData.title
+                                                }
+                                                playlist={
+                                                    playlistData?.song?.items
+                                                }
                                             />
                                         ))}
                                     </div>
@@ -307,7 +362,10 @@ const Album = () => {
                     <AlbumArtists artists={playlistData?.artists} />
                 </div>
             ) : (
-                <div> <Loading/></div>
+                <div>
+                    {" "}
+                    <Loading />
+                </div>
             )}
         </div>
     );
