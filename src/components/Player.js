@@ -36,6 +36,7 @@ const Player = ({ setShowSidebar }) => {
     const [isLast, setIsLast] = useState(false);
     const [isError, setIsError] = useState(false);
     const [firstAccess, setFirstAccess] = useState(true);
+    const {width} = useSelector((state) => state.app);
     const [err, setErr] = useState();
     const thumbRef = useRef();
     const trackRef = useRef();
@@ -254,9 +255,9 @@ const Player = ({ setShowSidebar }) => {
         }
     };
     return (
-        <div className="h-full bg-main-400 px-5 flex items-center">
+        <div className={`h-full bg-main-400 flex items-center ${width >700 ? " px-5" : "px-1"}`}>
             <LeftPlayer songInfo={songInfo} isLoaded={isLoaded} />
-            <div className=" w-[40%] flex-auto">
+            <div className=" w-[40%] flex-auto mx-[10px]">
                 <div className="flex justify-center items-center flex-col gap-1">
                     <div className=" gap-[16px] flex justify-center items-center">
                         <div className="w-[30px] h-[30px] px-[3px] py-[3px] cursor-pointer">
@@ -367,7 +368,7 @@ const Player = ({ setShowSidebar }) => {
                 </div>
             </div>
 
-            <div className=" w-[30%] flex-auto flex items-center justify-end gap-3 ">
+            <div className={`w-[30%] flex-auto flex items-center justify-end gap-3 ${width <700 && "hidden"}`}>
                 <div className="w-[30px] h-[30px] p-1 ">
                     {volumeSelector ? (
                         <HighVolumeIcon
@@ -397,8 +398,8 @@ const Player = ({ setShowSidebar }) => {
                     </div>
                 </div>
             </div>
-            <div className="h-[33px] w-[1px] mx-5 bg-[rgba(0,0,0,0.05)]"></div>
-            <div className="w-[30px] h-[30px] p-2 bg-[hsla(0,0%,100%,.1)]">
+            <div className={`h-[33px] w-[1px] mx-5 bg-[rgba(0,0,0,0.05)] ${width < 700 && "hidden"}`}></div>
+            <div className={`w-[30px] h-[30px] p-2 bg-[hsla(0,0%,100%,.1)] `}>
                 <PlayerPlaylistIcon
                     size={20}
                     className="cursor-pointer"

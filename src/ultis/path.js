@@ -3,7 +3,7 @@ const path = {
     HOME: "",
     LOGIN: "login",
     STAR: "*",
-    MY_MUSIC: "mymusic",
+    MY_MUSIC: "",
     SONG_LIBRARY:"song",
     PLAYLIST_LIBRARY:"playlist",
     RECENT_LIBRARY:"recent",

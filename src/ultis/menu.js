@@ -1,10 +1,6 @@
 import {  CategoryIcon, ClockIcon, DishIcon, FollowIcon, MusicIcon, MusicVideoIcon, PersonalIcon, PlaylistIcon, RadioIcon, SongIcon, StarIcon } from "./icons";
 export const sidebarMenu = [
-    {
-        path: "/mymusic",
-        text: "Cá Nhân",
-        icon: <PersonalIcon/>,
-    },
+
     {
         path: "",
         text: "Khám Phá",

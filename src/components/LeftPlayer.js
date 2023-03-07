@@ -1,19 +1,30 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { HeartIcon, MoreIcon, SpinerIcon } from "../ultis/icons";
-
 const LeftPlayer = ({ songInfo, isLoaded }) => {
+    const { width } = useSelector((state) => state.app);
     return (
-        <div className=" min-w-[200px] w-[30%] flex-auto truncate">
+        <div
+            className={`flex-auto truncate ${
+                width > 700 ? " w-[30%]" : "w-[10%]"
+            }`}
+        >
             {isLoaded ? (
                 <div className="flex gap-[12px] text-sm items-center">
-                    {songInfo ? (
+                    {songInfo && width > 700 ? (
                         <img
                             src={songInfo.thumbnail}
                             alt="thumbnail"
-                            className="w-16 h-16 rounded-[4px]"
+                            className={`w-16 h-16 rounded-[4px] ${
+                                width < 700 && "hidden"
+                            }`}
                         />
                     ) : (
-                        <div className="w-16 h-16 rounded-[4px] bg-slate-500"></div>
+                        <div
+                            className={`w-16 h-16 rounded-[4px] ${
+                                width < 700 && "hidden"
+                            }`}
+                        ></div>
                     )}
                     <div className="flex items-center gap-[12px] max-w-[155px]">
                         {songInfo ? (
@@ -30,17 +41,11 @@ const LeftPlayer = ({ songInfo, isLoaded }) => {
                         )}
                     </div>
 
-                    <div className="flex items-center">
-                        <div className="w-8 h-8 flex justify-center items-center px-[5px] py-[5px] cursor-pointer">
-                            <HeartIcon size={16} />
-                        </div>
-                        <div className="w-8 h-8 flex justify-center items-center px-[5px] py-[5px] cursor-pointer">
-                            <MoreIcon size={16} />
-                        </div>
-                    </div>
                 </div>
             ) : (
-                <div className="w-16 h-16 rounded-[4px] bg-slate-500 flex justify-center items-center"><SpinerIcon className="text-white animate-spin"/></div>
+                <div className="w-16 h-16 rounded-[4px] bg-slate-500 flex justify-center items-center">
+                    <SpinerIcon className="text-white animate-spin" />
+                </div>
             )}
         </div>
     );

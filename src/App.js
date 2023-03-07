@@ -56,7 +56,7 @@ function App() {
     }, []);
 
     return (
-        <div className="min-w-[700px]">
+        <div >
             {loaded ? (
                 <Routes>
                     <Route path={path.PUBLIC} element={<Public />}>

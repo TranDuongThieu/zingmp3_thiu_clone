@@ -51,12 +51,7 @@ const NewRelease = () => {
                         </div>
                     ))}
                 </div>
-                <div className="flex items-center text-[12px] hover:text-[#0f7070] cursor-pointer">
-                    <div>TẤT CẢ </div>
-                    <div className="p-[5px]">
-                        <NextIcon2 size={14} />
-                    </div>
-                </div>
+                
             </div>
             <div
                 className={`grid  text-[14px] ${

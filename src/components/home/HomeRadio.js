@@ -5,7 +5,7 @@ import { NextIcon2, PlayIcon } from "../../ultis/icons";
 
 const HomeRadio = ({ list }) => {
     const {width} = useSelector(state=>state.app)
-    const i = width >1350 ? 7: width >1220 ? 6 : 5
+    const i = width >1350 ? 7: width >1220 ? 6 : width > 700 ?5 :  width > 450 ? 4 : 2
     return (
         <div className="relative">
             <div className="flex justify-between mb-[20px]">

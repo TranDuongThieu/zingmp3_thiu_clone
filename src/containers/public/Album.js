@@ -97,6 +97,7 @@ const Album = () => {
             return h + " giờ " + min + " phút";
         }
     };
+    console.log(playlistData?.artists);
     return (
         <div className="w-full flex justify-center pt-8">
             {isLoaded ? (
@@ -303,7 +304,7 @@ const Album = () => {
                             </div>
                         )}
                     </div>
-                    <AlbumArtists artirsts={playlistData.artists} />
+                    <AlbumArtists artists={playlistData?.artists} />
                 </div>
             ) : (
                 <div> <Loading/></div>

@@ -14,7 +14,7 @@ const LeftSidebar = () => {
     const notActive =
         "py-2 flex items-center text-[#32323d] px-[25px] hover:text-[#0f7070]";
     return (
-        <div className="flex flex-col bg-main-200 h-full text-[13px] font-bold">
+        <div className="flex  bg-main-200 h-full text-[13px] font-bold">
             <Scrollbars autoHide>
                 <div className="w-full flex items-center px-[25px] py-[15px] h-[70px]">
                     <NavLink to="" className="w-[120px] h-full cursor-pointer">

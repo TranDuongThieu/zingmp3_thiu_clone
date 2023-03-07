@@ -122,7 +122,7 @@ const Zingchart = () => {
 
                     <div className=" rounded-[10px] absolute  top-0 left-0 bottom-0 right-0  bg-gradient-to-t from-[#740091] to-[#2d1a4c] opacity-[0.95]"></div>
                     <div className="absolute top-0 left-0 bottom-0 right-0 flex flex-col ">
-                        <div className="flex text-white text-[28px] items-center gap-2 m-[20px] mb-0">
+                        <div className={`flex text-white text-[28px] items-center gap-2 ${width < 700 ? "m-0": "m-[20px] mb-0 "}`}>
                             <Link
                                 to={path.ZING_CHART}
                                 className="font-bold hover:text-[#0f7070] cursor-pointer"

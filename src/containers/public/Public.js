@@ -13,13 +13,13 @@ const Public = () => {
             <div className="relative w-full  h-full flex   ">
                 <div
                     className={`h-full flex-none  ${
-                        currentWidth > 1131 ? "w-[240px]" : "w-[70px]"
+                        currentWidth > 1131 ? "w-[240px]" : currentWidth > 700? "w-[70px]" :""
                     } ${currentSongInfo && "pb-[90px]"}`}
                 >
                     <LeftSidebar />
                 </div>
                 <div className=" flex-auto w-full ">
-                    <div className="h-[70px] py-0  flex items-center px-[59px]">
+                    <div className={`h-[70px] py-0  flex items-center jcenter ${currentWidth > 700 ? "px-[59px]" : "px-3"}`}>
                         <Header />
                     </div>
                     <Scrollbars>

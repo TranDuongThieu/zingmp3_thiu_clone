@@ -19,7 +19,8 @@ const Top100 = () => {
     useEffect(() => {
         if (width > 1350) setCol(5);
         else if (width > 768) setCol(4);
-        else setCol(3);
+        else if (width >450) setCol(3);
+        else setCol(2)
     }, [width]);
     useEffect(() => {
         const fetchData = async () => {
@@ -33,7 +34,7 @@ const Top100 = () => {
     return (
         <div className="w-full flex justify-center">
             {loaded ? (
-                <div className="w-full flex flex-col gap-[30px] max-w-[1442px] pb-[200px] px-[59px]">
+                <div className={`w-full flex flex-col gap-[30px] max-w-[1442px] pb-[200px] ${width >700 ? "px-[59px]":"px-2"}`}>
                     {top100?.map((item, index) => (
                         <div className="flex flex-col " key={index}>
                             <div className="text-[20px] font-bold mb-[10px]">
@@ -45,7 +46,7 @@ const Top100 = () => {
                                         ? "grid-cols-4"
                                         : col === 5
                                         ? "grid-cols-5"
-                                        : "grid-cols-3"
+                                        : col === 3 ? "grid-cols-3" : "grid-cols-2"
                                 }`}
                             >
                                 {item?.items.map((song) => (

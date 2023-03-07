@@ -3,7 +3,7 @@ import { CloseIcon, SearchIcon } from "../../ultis/icons";
 import path from "../../ultis/path";
 import { useRef } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {  searchID } from "../../store/actions";
 const SearchInput = () => {
     const inputRef = useRef();
@@ -43,8 +43,9 @@ const SearchInput = () => {
             }).toString(),
         });
     };
+    const {width} = useSelector(state=> state.app)
     return (
-        <div className="flex items-center bg-[hsla(0,0%,100%,0.3)] rounded-[20px] w-[70%] h-[40px] px-[10px] gap-1 truncate">
+        <div className={`flex items-center bg-[hsla(0,0%,100%,0.3)] rounded-[20px] h-[40px] px-[10px] gap-1 truncate w-full `}>
             <SearchIcon
                 size={24}
                 className="my-[5px] hover:cursor-pointer flex-none"
