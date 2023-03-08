@@ -14,9 +14,8 @@ const HomePlaylist = ({ title = "", list, search }) => {
     const [length, setLength] = useState()
     useEffect(()=>{
         setCol(width > 1350? 5: width > 680 ? 4 : width > 450 ? 3: 2);
-        if (col === 2) setLength(4);
-        else setLength(col)
     },[width])
+    console.log(width , col , length);
     return (
         <div className="w-full">
             {!list ? (
@@ -25,7 +24,7 @@ const HomePlaylist = ({ title = "", list, search }) => {
                 <div className="flex flex-col gap-[20px] w-full justify-center ">
                     <div className="text-[20px] font-bold ">{title}</div>
                     <div className={`grid justify-between gap-[20px] ${col === 4 ? "grid-cols-4" : col===5?  "grid-cols-5": col === 3 ?"grid-cols-3": "grid-cols-2"}`}>
-                        {list?.slice(0, length).map((item) => (
+                        {list?.slice(0, col).map((item) => (
                             <div
                                 key={item.encodeId}
                                 onClick={() =>
