@@ -1,9 +1,8 @@
-import { isEqual } from "lodash";
 import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import { Audio } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import * as apis from "../../api";
 import { SongInPlaylist } from "../../components";
 import AlbumArtists from "../../components/album/AlbumArtists";
@@ -29,7 +28,6 @@ const Album = () => {
     const playlistIdStorage = useSelector(
         (state) => state.storagesong.playlistId
     );
-    const navigate = useNavigate();
     const [playlistData, setPlaylistData] = useState("");
     const dispatch = useDispatch();
     const { isPlaying } = useSelector((state) => state.isPlaying);
@@ -57,6 +55,7 @@ const Album = () => {
         return () => {
             window.removeEventListener("beforeunload", handleBeforeUnload);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         const fetchPlaylistData = async () => {
@@ -87,6 +86,7 @@ const Album = () => {
             // const newState = { ...location.state, playAlbum: false };
             // navigate(location.pathname, { state: newState });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pid, playlistData]);
     const FormatDuration = (num) => {
         if (num < 3600) {
@@ -99,7 +99,6 @@ const Album = () => {
             return h + " giờ " + min + " phút";
         }
     };
-    console.log(playlistData?.artists);
     return (
         <div className="w-full flex justify-center pt-8">
             {isLoaded ? (

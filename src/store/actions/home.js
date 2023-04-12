@@ -8,3 +8,7 @@ export const setCurrentWidth = (width) => {
         width,
     };
 };
+
+export const setShowSidebarAction = (data) => {
+    return { type : actionTypes.SHOW_LEFT_SIDEBAR, data};
+};

@@ -1,4 +1,4 @@
-import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
+    import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 import { VscMultipleWindows } from "react-icons/vsc";
 import { CiSearch, CiRepeat } from "react-icons/ci";
 import {
@@ -7,6 +7,7 @@ import {
     AiOutlineHeart,
     AiFillPlayCircle,
     AiOutlineUserAdd,
+    AiOutlineMenu,
 } from "react-icons/ai";
 import { BiPause, BiPlay } from "react-icons/bi";
 import { FiMoreHorizontal } from "react-icons/fi";
@@ -20,6 +21,34 @@ import { Audio } from "react-loader-spinner";
 import { TfiAlarmClock } from "react-icons/tfi";
 import { RxTriangleDown, RxTriangleUp } from "react-icons/rx";
 import loading from "../assets/loading.svg";
+
+export const RepeatIcon = CiRepeat;
+export const ShuffleIcon = TbArrowsShuffle;
+export const MoreIcon = FiMoreHorizontal;
+export const HeartIcon = AiOutlineHeart;
+export const ArrowLeftIcon = BsArrowLeft;
+export const ArrowRightIcon = BsArrowRight;
+export const SearchIcon = CiSearch;
+export const CloseIcon = AiOutlineClose;
+export const PlusIcon = AiOutlinePlus;
+export const PlayIcon = BiPlay;
+export const NextIcon = MdSkipNext;
+export const PrevIcon = MdSkipPrevious;
+export const PauseIcon = BiPause;
+export const SpinerIcon = FaSpinner;
+export const ArrangeIcon = TbArrowsUpDown;
+export const MicroIcon = TbMicrophone2;
+export const NextIcon2 = GrNext;
+export const WindowIcon = VscMultipleWindows;
+export const HighVolumeIcon = SlVolume2;
+export const MuteVolumeIcon = SlVolumeOff;
+export const PlayerPlaylistIcon = SlPlaylist;
+export const PlayIconFill = AiFillPlayCircle;
+export const ClockOutlineIcon = TfiAlarmClock;
+export const AddFriendsIcon = AiOutlineUserAdd;
+export const TriangleDownIcon = RxTriangleDown;
+export const TriangleUpIcon = RxTriangleUp;
+export const MenuIcon = AiOutlineMenu;
 export const AudioGif = () => (
     <Audio
         height="16"
@@ -395,32 +424,7 @@ export const ZingMp3Icon = () => {
     </svg>;
 };
 
-export const RepeatIcon = CiRepeat;
-export const ShuffleIcon = TbArrowsShuffle;
-export const MoreIcon = FiMoreHorizontal;
-export const HeartIcon = AiOutlineHeart;
-export const ArrowLeftIcon = BsArrowLeft;
-export const ArrowRightIcon = BsArrowRight;
-export const SearchIcon = CiSearch;
-export const CloseIcon = AiOutlineClose;
-export const PlusIcon = AiOutlinePlus;
-export const PlayIcon = BiPlay;
-export const NextIcon = MdSkipNext;
-export const PrevIcon = MdSkipPrevious;
-export const PauseIcon = BiPause;
-export const SpinerIcon = FaSpinner;
-export const ArrangeIcon = TbArrowsUpDown;
-export const MicroIcon = TbMicrophone2;
-export const NextIcon2 = GrNext;
-export const WindowIcon = VscMultipleWindows;
-export const HighVolumeIcon = SlVolume2;
-export const MuteVolumeIcon = SlVolumeOff;
-export const PlayerPlaylistIcon = SlPlaylist;
-export const PlayIconFill = AiFillPlayCircle;
-export const ClockOutlineIcon = TfiAlarmClock;
-export const AddFriendsIcon = AiOutlineUserAdd;
-export const TriangleDownIcon = RxTriangleDown;
-export const TriangleUpIcon = RxTriangleUp;
+
 export const Loading = () => {
     return <img src={loading} alt="" />;
 };

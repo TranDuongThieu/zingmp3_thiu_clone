@@ -2,6 +2,7 @@ import actionTypes from "../actions/actionTypes";
 
 const initialState = {
     width: 0,
+    sidebar:false,
     homedata: [],
     banner: [],
     new_releases: [],
@@ -41,6 +42,9 @@ export default function appReducer(state = initialState, action) {
         }
         case actionTypes.SET_CURRENT_WIDTH: {
             return { ...state, width: action.width };
+        }
+        case actionTypes.SHOW_LEFT_SIDEBAR:{
+            return { ...state, sidebar:action.data}
         }
         default:
             return state;

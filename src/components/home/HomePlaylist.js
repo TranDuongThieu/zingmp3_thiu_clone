@@ -11,11 +11,9 @@ const HomePlaylist = ({ title = "", list, search }) => {
     const dispatch = useDispatch();
     const {width} = useSelector(state=>state.app)
     const [col, setCol] = useState();
-    const [length, setLength] = useState()
     useEffect(()=>{
         setCol(width > 1350? 5: width > 680 ? 4 : width > 450 ? 3: 2);
     },[width])
-    console.log(width , col , length);
     return (
         <div className="w-full">
             {!list ? (

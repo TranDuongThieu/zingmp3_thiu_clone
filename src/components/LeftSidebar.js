@@ -1,9 +1,8 @@
 import React from "react";
 import logo from "../assets/logo.svg";
 import zingmp3logo from "../assets/zingmp3logo.svg";
-import { bottomSidebarMenu, libraryMenu, sidebarMenu } from "../ultis/menu";
+import { bottomSidebarMenu, sidebarMenu } from "../ultis/menu";
 import { NavLink } from "react-router-dom";
-import { PlusIcon } from "../ultis/icons";
 import "./scrollbar-settings.css";
 import Scrollbars from "react-custom-scrollbars-2";
 import { useSelector } from "react-redux";
@@ -21,7 +20,11 @@ const LeftSidebar = () => {
                         {currentWidth > 1131 ? (
                             <img src={logo} alt="logo" />
                         ) : (
-                            <img src = {zingmp3logo} alt="logo" className="scale-150 w-[50px] h-[50px]"/>
+                            <img
+                                src={zingmp3logo}
+                                alt="logo"
+                                className="scale-150 w-[50px] h-[50px]"
+                            />
                         )}
                     </NavLink>
                 </div>
@@ -81,39 +84,7 @@ const LeftSidebar = () => {
                             </div>
                         </div>
                     )}
-                    {/* <div className="pt-5">
-                        {currentWidth > 1131 && (
-                            <h3 className="px-[25px] pb-3 ">THƯ VIỆN</h3>
-                        )}
-                        {libraryMenu.map((item) => (
-                            <NavLink
-                                key={item.path}
-                                end={item.end}
-                                to={item.path}
-                                className={({ isActive }) =>
-                                    isActive ? active : notActive
-                                }
-                            >
-                                <div>
-                                    <div className="gap-[10px] flex">
-                                        {item.icon}
-                                        {currentWidth > 1131 && (
-                                            <span className=" font-bold ">
-                                                {item.text}
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
-                            </NavLink>
-                        ))}
-                    </div> */}
                 </div>
-                {/* {currentWidth > 1131 && (
-                    <div className="flex  items-center gap-[10px] px-[25px] h-[54px] cursor-pointer hover:text-[#0f7070] border-t-[1px] border-[#ccc] ">
-                        <PlusIcon size={18} />
-                        <span>Tạo playlist mới</span>
-                    </div>
-                )} */}
             </Scrollbars>
         </div>
     );

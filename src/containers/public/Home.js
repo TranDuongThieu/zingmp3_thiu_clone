@@ -14,12 +14,12 @@ const Home = () => {
     const radio = useSelector((state) => state?.app?.home_radio);
     const { width } = useSelector((state) => state?.app);
     const weekChart = useSelector((state) => state?.app?.week_chart[0]);
-    let col = width > 700 ? 3 : 2
+    let col = width > 700 ? 3 : 2;
     return (
         <div className="w-full flex justify-center pt-8">
             <div
                 className={`flex flex-col justify-center w-full max-w-[1442px] gap-12 mb-[160px] ${
-                    width > 700 ? " px-[59px]" :"px-3"
+                    width > 700 ? " px-[59px]" : "px-3"
                 }`}
             >
                 <Slider />
@@ -32,15 +32,19 @@ const Home = () => {
                     title={playlist[1]?.title}
                     list={playlist[1]?.items}
                 />
-                <HomeRadio list={radio[0]} />
+                {width > 400 && <HomeRadio list={radio[0]} />}
+
                 <HomePlaylist
                     title={playlist[2]?.title}
                     list={playlist[2]?.items}
                 />
-                <Zingchart />
+                {width > 400 && <Zingchart />}
                 <div className="flex gap-[12px]">
-                    {weekChart?.items?.slice(0,col).map((item, index) => (
-                        <div key={item?.link} className={`${col === 2 ? "w-1/2" :"w-1/3"}`}>
+                    {weekChart?.items?.slice(0, col).map((item, index) => (
+                        <div
+                            key={item?.link}
+                            className={`${col === 2 ? "w-1/2" : "w-1/3"}`}
+                        >
                             <img
                                 src={item?.cover}
                                 alt="cover"

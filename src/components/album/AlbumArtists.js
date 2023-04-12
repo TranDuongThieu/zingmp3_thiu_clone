@@ -1,7 +1,6 @@
 import React from "react";
 import {v4 as uuid} from "uuid"
 const AlbumArtists = ({ artists }) => {
-    console.log(artists);
     return (
         <div className="w-full">
             <div className="font-bold text-[20px] mb-[20px]">

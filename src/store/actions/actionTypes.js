@@ -16,6 +16,7 @@ const actionTypes = {
     SET_CURRENT_WIDTH: "SET_CURRENT_WIDTH",
     SET_SEARCH_ID: "SET_SEARCH_ID",
     SET_LOADED:"SET_LOADED",
+    SHOW_LEFT_SIDEBAR: "SHOW_LEFT_SIDEBAR",
 
 };
 export default actionTypes;

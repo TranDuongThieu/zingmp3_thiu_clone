@@ -35,8 +35,7 @@ const Player = ({ setShowSidebar }) => {
     const [isFirst, setIsFirst] = useState(false);
     const [isLast, setIsLast] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [firstAccess, setFirstAccess] = useState(true);
-    const {width} = useSelector((state) => state.app);
+    const { width } = useSelector((state) => state.app);
     const [err, setErr] = useState();
     const thumbRef = useRef();
     const trackRef = useRef();
@@ -101,6 +100,7 @@ const Player = ({ setShowSidebar }) => {
             dispatch(setLoaded(true));
         };
         fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [songId]);
 
     useEffect(() => {
@@ -119,6 +119,7 @@ const Player = ({ setShowSidebar }) => {
                 thumbRef.current.style.cssText = `right: ${100 - percent}%`;
             }, 500);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [audio, isPlaying]);
     const handleTogglePlay = () => {
         if (!isError) {
@@ -139,10 +140,12 @@ const Player = ({ setShowSidebar }) => {
             dispatch(play(false));
             audio.pause();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying, isLoaded]);
 
     useEffect(() => {
         audio.volume = volumeSelector / 100;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [volumeSelector]);
 
     useEffect(() => {
@@ -153,6 +156,7 @@ const Player = ({ setShowSidebar }) => {
                 audio.play();
             } else handleNextSong();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentTime]);
 
     useEffect(() => {
@@ -172,6 +176,7 @@ const Player = ({ setShowSidebar }) => {
             setIsFirst(true);
             setIsLast(true);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [audio]);
     const handleSetProgress = (e) => {
         const trackReact = trackRef.current.getBoundingClientRect();
@@ -255,11 +260,19 @@ const Player = ({ setShowSidebar }) => {
         }
     };
     return (
-        <div className={`h-full bg-main-400 flex items-center ${width >700 ? " px-5" : "px-1"}`}>
+        <div
+            className={`h-full bg-main-400 flex items-center ${
+                width > 700 ? " px-5" : "px-1"
+            }`}
+        >
             <LeftPlayer songInfo={songInfo} isLoaded={isLoaded} />
             <div className=" w-[40%] flex-auto mx-[10px]">
                 <div className="flex justify-center items-center flex-col gap-1">
-                    <div className={` flex justify-center items-center ${width < 500 ? "gap-2" : "gap-4"}`}>
+                    <div
+                        className={` flex justify-center items-center ${
+                            width < 500 ? "gap-2" : "gap-4"
+                        }`}
+                    >
                         <div className="w-[30px] h-[30px] px-[3px] py-[3px] cursor-pointer">
                             <ShuffleIcon
                                 className={`w-full h-full ${
@@ -368,7 +381,11 @@ const Player = ({ setShowSidebar }) => {
                 </div>
             </div>
 
-            <div className={`w-[30%] flex-auto flex items-center justify-end gap-3 ${width <700 && "hidden"}`}>
+            <div
+                className={`w-[30%] flex-auto flex items-center justify-end gap-3 ${
+                    width < 700 && "hidden"
+                }`}
+            >
                 <div className="w-[30px] h-[30px] p-1 ">
                     {volumeSelector ? (
                         <HighVolumeIcon
@@ -398,7 +415,11 @@ const Player = ({ setShowSidebar }) => {
                     </div>
                 </div>
             </div>
-            <div className={`h-[33px] w-[1px] mx-5 bg-[rgba(0,0,0,0.05)] ${width < 700 && "hidden"}`}></div>
+            <div
+                className={`h-[33px] w-[1px] mx-5 bg-[rgba(0,0,0,0.05)] ${
+                    width < 700 && "hidden"
+                }`}
+            ></div>
             <div className={`w-[30px] h-[30px] p-2 bg-[hsla(0,0%,100%,.1)] `}>
                 <PlayerPlaylistIcon
                     size={20}
